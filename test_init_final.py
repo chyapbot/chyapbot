@@ -2,7 +2,7 @@
 
 ################ Server Ver. 25 (2021. 1. 18.) #####################
 
-import sys, os
+import sys, os, ctypes
 import asyncio, discord, aiohttp
 import random, re, datetime, time, logging
 from discord.ext import tasks, commands
@@ -26,6 +26,10 @@ logging.basicConfig(stream=log_stream, level=logging.WARNING)
 #handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 #ilsanglog.addHandler(handler)
 #####################################################
+
+if not discord.opus.is_loaded():
+	discord.opus.load_opus(ctypes.util.find_library('opus'))
+	print("opus_loaded")
 
 basicSetting = []
 bossData = []
