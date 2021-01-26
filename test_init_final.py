@@ -569,8 +569,9 @@ async def MakeSound(saveSTR, filename):
 async def PlaySound(voiceclient, filename):
 	if basicSetting[21] != "1":
 		return
-
-	source = discord.FFmpegPCMAudio(filename)
+        
+	# source = discord.FFmpegPCMAudio(filename)
+	source = discord.FFmpegOpusAudio(filename)
 	try:
 		voiceclient.play(source)
 	except discord.errors.ClientException:
@@ -579,7 +580,7 @@ async def PlaySound(voiceclient, filename):
 	while voiceclient.is_playing():
 		await asyncio.sleep(1)
 	voiceclient.stop()
-	source.cleanup()
+	# source.cleanup()
 	return
 
 #my_bot.db 저장하기
